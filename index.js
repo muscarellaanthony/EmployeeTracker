@@ -94,8 +94,8 @@ function viewDepartments(){
 const addDepartment = async () => {
     let {newDepartment} = await prompt([
         {
-            type: inputDepartment,
-            name: newDepartment,
+            type: 'input',
+            name: 'newDepartment',
             message: 'What would you like the department to be called?'
         }
     ])
