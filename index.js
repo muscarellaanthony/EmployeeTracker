@@ -221,7 +221,32 @@ const addDepartment = async () => {
 
 // TODO- Create a function to Add an employee
 const addEmployee = async () => {
-    
+    let { rows } = await db.findAllRoles()
+    const roles = rows.map(({role_id, title}) => ({
+        name: title,
+        value: role_id
+    }))
+    let {first_name, last_name, role_id} = await prompt([
+        {
+            type: 'input',
+            name: 'first_name',
+            message: `What is the employee's first name?`
+        },
+        {
+            type: 'input',
+            name: 'last_name',
+            message: `What is the employee's last name?`
+        },
+        {
+            type: 'list',
+            name: 'role_id',
+            message: `What is the employee's role?`,
+            choices: roles
+        },
+    ])
+    await db.inputEmployee(first_name, last_name, role_id)
+    console.log('Employee added.')
+    loadMainPrompts();
 }
 
 // Exit the application

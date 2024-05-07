@@ -18,11 +18,9 @@ class DB {
     return this.query('SELECT * FROM employee');
   }
 
-  // TODO- Create a query to Find all employees except the given employee id
-
   // TODO- Create a query to Create a new employee
-  inputEmployee(first_name, last_name, title){
-    return this.query('INSERT INTO employee(first_name, last_name, title) VALUES ($1, $2, $3)', [first_name, last_name, title])
+  inputEmployee(first_name, last_name, role_id){
+    return this.query('INSERT INTO employee(first_name, last_name, role_id) VALUES ($1, $2, $3)', [first_name, last_name, role_id])
   }
   // BONUS- Create a query to Remove an employee with the given id
 
