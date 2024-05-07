@@ -15,7 +15,6 @@ function init() {
 
 function loadMainPrompts() {
     prompt([
-        // TODO- Create first question user will see- "What would you like to do?"
         {
             type: 'list',
             name: 'start',
@@ -23,9 +22,7 @@ function loadMainPrompts() {
             choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee','Quit']
         }
     ]).then((res) => {
-        // TODO- Create a variable to store the user's choice
         const userChoice = res.start
-        // TODO- Create a switch statement to call the appropriate function depending on what the user chose
         switch (userChoice) {
             case 'View all departments':
                 viewDepartments()
@@ -55,7 +52,6 @@ function loadMainPrompts() {
     });
 }
 
-// TODO- Create a function to View all employees
 function viewEmployees() {
     db.findAllEmployees()
         .then(({ rows }) => {
@@ -66,14 +62,6 @@ function viewEmployees() {
         })
     
 }
-
-// BONUS- Create a function to View all employees that belong to a department
-
-// BONUS- Create a function to View all employees that report to a specific manager
-
-// BONUS- Create a function to Delete an employee
-
-// TODO- Create a function to Update an employee's role
 const updateEmployee = async () => {
     let { rows } = await db.findAllEmployees()
     const employees = rows.map(({ employee_id, first_name, last_name }) => ({
@@ -151,9 +139,6 @@ const updateEmployee = async () => {
     loadMainPrompts()
 }
 
-// BONUS- Create a function to Update an employee's manager
-
-// TODO- Create a function to View all roles
 function viewRoles() {
     db.findAllRoles()
         .then(({ rows }) => {
@@ -162,7 +147,7 @@ function viewRoles() {
         .then(() =>
             loadMainPrompts())
 }
-// TODO- Create a function to Add a role
+
 const addRole = async () => {
     let { rows } = await db.findAllDepartments();
     const departments = rows.map(({ department_name, department_id }) => ({
@@ -191,9 +176,7 @@ const addRole = async () => {
     console.log('Added role.')
     loadMainPrompts()
 }
-// BONUS- Create a function to Delete a role
 
-// TODO- Create a function to View all deparments
 function viewDepartments() {
     db.findAllDepartments()
         .then(({ rows }) => {
@@ -202,7 +185,7 @@ function viewDepartments() {
         .then(() =>
             loadMainPrompts())
 }
-// TODO- Create a function to Add a department
+
 const addDepartment = async () => {
     let { newDepartment } = await prompt([
         {
@@ -215,11 +198,7 @@ const addDepartment = async () => {
     console.log('New department added.');
     loadMainPrompts();
 }
-// BONUS- Create a function to Delete a department
 
-// BONUS- Create a function to View all departments and show their total utilized department budget
-
-// TODO- Create a function to Add an employee
 const addEmployee = async () => {
     let { rows } = await db.findAllRoles()
     const roles = rows.map(({role_id, title}) => ({

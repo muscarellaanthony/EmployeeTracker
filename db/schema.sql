@@ -1,19 +1,15 @@
 -- Drop the database if it exists
 DROP DATABASE IF EXISTS employees;
 
--- Create the new database
 CREATE DATABASE employees;
 
--- Connect to the database
 \c employees
 
--- TODO- write an SQL command to Create the department table
 CREATE TABLE department (
     department_id SERIAL PRIMARY KEY,
     department_name VARCHAR(40) UNIQUE NOT NULL
 );
 
--- TODO- write an SQL command to Create the role table
 CREATE TABLE roles(
     role_id SERIAL PRIMARY KEY,
     title VARCHAR(100) UNIQUE NOT NULL,
@@ -22,7 +18,6 @@ CREATE TABLE roles(
     salary INTEGER NOT NULL
 );
 
--- TODO- write an SQL command to Create the employee table
 CREATE TABLE employee(
     employee_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
